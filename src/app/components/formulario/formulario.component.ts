@@ -33,7 +33,7 @@ export class FormularioComponent implements OnInit {
     }
     const request = this.addLibroForm.value;
     console.log('Cargare el obj: ' + request);
-    this.peliculasService.addLibro(request).subscribe((rta: any) => {
+    this.peliculasService.addPelicula(request).subscribe((rta: any) => {
       console.log('Respuesta de alta ', rta);
       if (rta.status == 200) {
         console.log('Cargado');

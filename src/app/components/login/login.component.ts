@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private loginService: LoginService) {
+  constructor(private authService: AuthService) {
     this.myForm = new FormGroup({
       user: new FormControl(),
       pass: new FormControl()
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     console.log(this.myForm.value);
-    this.loginService.login(this.myForm.value);
+    this.authService.doLogin(this.myForm.value);
   }
 
 }

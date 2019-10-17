@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+  // URL API
+  private _URL = 'http://localhost:3000/';
 
   public listUser = [
     {
@@ -18,14 +21,8 @@ export class LoginService {
       usuario: '@visitante', clave: '13579'
     }];
 
- public login(data: any) {
-    const user = this.listUser.find(usr => {
-       return (data.user === usr.usuario) && (data.pass === usr.clave);
-     });
-    if (user) {
-      localStorage.setItem('usuario', JSON.stringify(user));
-    } else {
-      localStorage.setItem('usuario', null);
-    }
+
+  public login(data: any) {
+    return this.httpClient.post(this._URL + 'auth/login', data);
   }
 }
