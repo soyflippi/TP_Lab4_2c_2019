@@ -1,3 +1,17 @@
-# TP_Lab4_2c_2019
+# FriendlyExam
 
-   Link al form https://forms.gle/nauVzL5CmyP3rkLG6
+[Angular] version 8.
+
+## Development server
+
+`ng serve` -> `http://localhost:4200/`
+
+## Build
+
+`ng build`
+
+## Create scripts
+
+`ng generate component component-name` 
+
+`ng generate directive|pipe|service|class|guard|interface|enum|module`.
