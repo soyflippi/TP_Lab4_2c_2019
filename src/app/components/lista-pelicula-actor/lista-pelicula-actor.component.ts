@@ -10,7 +10,7 @@ import { PeliculasService } from '../../services/peliculas.service';
 export class ListaPeliculaActorComponent implements OnInit {
 
   constructor(private actoresService: ActoresService, private http: PeliculasService) { }
-  actor = {};
+  actor = {nombre: '', apellido: ''};
   listado = [];
 
   ngOnInit() {

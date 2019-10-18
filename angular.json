@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "friendly-exam": {
+    "la-comanda-flippi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/friendly-exam",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "friendly-exam:build"
+            "browserTarget": "la-comanda-flippi:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "friendly-exam:build:production"
+              "browserTarget": "la-comanda-flippi:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "friendly-exam:build"
+            "browserTarget": "la-comanda-flippi:build"
           }
         },
         "test": {
@@ -116,15 +116,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "friendly-exam:serve"
+            "devServerTarget": "la-comanda-flippi:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "friendly-exam:serve:production"
+              "devServerTarget": "la-comanda-flippi:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "friendly-exam"
+  "defaultProject": "la-comanda-flippi"
 }

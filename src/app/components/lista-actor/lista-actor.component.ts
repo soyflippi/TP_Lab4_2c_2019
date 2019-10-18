@@ -13,10 +13,10 @@ export class ListaActorComponent implements OnInit {
 
   ngOnInit() {
     console.log('Llamo a traerLibros');
-    this.CargarLista();
+    this.CargarLista(null);
   }
 
-  public CargarLista() {
+  public CargarLista(evt: any) {
     this.http.getActores().subscribe((data: any) => {
       /* console.log(data.rta);
       this.listado = data.rta; */
@@ -28,7 +28,7 @@ export class ListaActorComponent implements OnInit {
   Recargar(event) {
     console.log('Event de listado' + event);
     if (event === true) {
-      this.CargarLista();
+      this.CargarLista(null);
     }
   }
 }

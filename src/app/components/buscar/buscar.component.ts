@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pelicula } from 'src/app/services/peliculas.service';
+import { Pelicula } from 'src/app/clases/pelicula';
 
 @Component({
   selector: 'app-buscar',

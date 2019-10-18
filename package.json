@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --prod --base-href https://soyflippi.github.io/TP_Lab4_2c_2019/ && ngh",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

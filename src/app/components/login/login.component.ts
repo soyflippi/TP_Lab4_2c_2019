@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
-
+  isLoading = false;
   constructor(private authService: AuthService) {
     this.myForm = new FormGroup({
       user: new FormControl(),

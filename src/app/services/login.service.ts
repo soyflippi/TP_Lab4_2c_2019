@@ -8,7 +8,7 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
   // URL API
-  private _URL = 'http://localhost:3000/';
+  private _URL = 'http://raspiflippi.ddns.net:3000/';
 
   public listUser = [
     {
@@ -20,7 +20,6 @@ export class LoginService {
     {
       usuario: '@visitante', clave: '13579'
     }];
-
 
   public login(data: any) {
     return this.httpClient.post(this._URL + 'auth/login', data);

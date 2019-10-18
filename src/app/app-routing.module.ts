@@ -14,7 +14,11 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: 'bienvenido', component: BienvenidoComponent },
+  {
+    path: 'bienvenido', component: BienvenidoComponent,
+    canActivate: [AuthGuardService]
+  },
+  /*
   { path: 'busqueda', component: BuscarComponent },
   {
     path: 'peliculas/alta', component: AltaPeliComponent,
@@ -26,7 +30,7 @@ const routes: Routes = [
   },
   { path: 'actor/listado', component: ListaActorComponent },
   { path: 'actor/detail/:id', component: ListaPeliculaActorComponent },
-  { path: 'peliculas/listado', component: ListaComponent },
+  { path: 'peliculas/listado', component: ListaComponent }, */
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/bienvenido', pathMatch: 'full' },
   { path: '**', redirectTo: '/bienvenido', pathMatch: 'full' },
