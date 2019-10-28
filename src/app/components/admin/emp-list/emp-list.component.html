@@ -1,0 +1,149 @@
+
+<div class="container col-lg-6 mt-5">
+  <h1 class="mb-3" style="color:#7297d6; text-align:center;">Gestion de empleados</h1>
+<button class="btn btn-info btn-lg btn-block mb-2" type="button"  data-toggle="modal" data-target="#exampleModalCenter">Crear nuevo empleado</button>
+<mat-form-field style="background: white">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" [class.isMobile]="isMobile" matSort>
+    
+    <ng-container matColumnDef="codemp">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.cod_emp}}</span> </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.nombre}}</span></td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.apellido}}</span></td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">{{row.usuario}}</span> </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">{{row.estado | estado}}</span> </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">{{row.rol | rol}}</span></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Eliminar </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color" style="text-align: center;"> <button class=" btn btn-danger btn-md" (click)="Eliminar(row.cod_emp)" [disabled]="row.estado == 3"><i class="fas fa-user-slash"></i></button></td>
+    </ng-container>
+    
+    <ng-container matColumnDef="suspender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Suspender/Reincorporar </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color" style="text-align: center;"> 
+        <button *ngIf="row.estado == 1" class="btn btn-md btn-outline-warning"  (click)="Suspender(row.cod_emp)"><i class="fas fa-user-lock"></i></button>
+            <button *ngIf="row.estado == 2" class="btn btn-md btn-outline-info" (click)="Reincorporar(row.cod_emp)"><i class="fas fa-user-check"></i></button>
+                <button *ngIf="row.estado == 3"  class="btn btn-md btn-secondary"disabled>Eliminado</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <button class="btn btn-md" (click)="reload()"><i class="fas fa-sync-alt"></i></button>
+</div>
+
+
+
+<!--Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="form" [formGroup]='formRegistrar'>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nombre</label>
+              <input type="text" class="form-control"  placeholder="Nombre" formControlName="nombre" [ngClass]="{'inputIsinvalid' : name.invalid && (name.dirty || name.touched)}">
+              <div class="form-text text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <small *ngIf="name.errors['required']">Debe ingresar un nombre</small>
+                <small *ngIf="name.errors['minlength']">El nombre debe contener al menos 2 caracteres </small>
+                <small *ngIf="name.errors['pattern']">El nombre debe contener solo letras</small>   
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputApellido4">Apellido</label>
+              <input type="text" class="form-control"  placeholder="Apellido" formControlName="apellido" [ngClass]="{'inputIsinvalid' : surname.invalid && (surname.dirty || surname.touched)}">
+              <div class="form-text text-danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                <small *ngIf="surname.errors['required']">Debe ingresar un apellido</small>
+                <small *ngIf="surname.errors['minlength']">El apellido debe contener al menos 2 letras</small>
+                <small *ngIf="surname.errors['pattern']">El apellido debe contener solo letras</small>   
+                <small *ngIf="surname.errors['maxlength']">El apellido es muy largo</small>         
+              </div>
+            </div> 
+          </div>
+          <div class="form-group">
+            <label for="inputUsuario">Usuario</label>
+            <input type="text" class="form-control"  placeholder="Usuario" formControlName="usuario" [ngClass]="{'inputIsinvalid' : user.invalid && (user.dirty || user.touched)}">
+            <div class="form-text text-danger" *ngIf="user.invalid && (user.dirty || user.touched)">
+              <small *ngIf="user.errors['required']">Debe ingresar un usuario</small>
+              <small *ngIf="user.errors['minlength']">El usuario debe contener al menos 2 caracteres </small> 
+              <small *ngIf="user.errors['maxlength']">El usuario es muy largo</small>     
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputState">Sector/Tarea</label>        
+            <select id="inputState" class="form-control" formControlName="rol" [ngClass]="{'inputIsinvalid' : rol.invalid && (rol.dirty || rol.touched), 'inputIsinvalid' :rol.invalid && (rol.dirty || rol.touched)}">
+              <option selected disabled value="">Elija una opcion</option>
+           
+                <option *ngFor="let item of rol" value="{{item.name}}">{{item.name}}</option>           
+            </select>
+            <div class="form-text text-danger" *ngIf="rol.invalid && (rol.dirty || rol.touched)">
+              <small *ngIf="rol.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pass">Contraseña</label>
+            <input type="password" class="form-control"  placeholder="Contraseña"  formControlName="pass"  [ngClass]="{'inputIsinvalid' : pass1.invalid && (pass1.dirty || pass1.touched), 'inputIsinvalid' :pass2.invalid && (pass2.dirty || pass2.touched)}">
+            <div class="form-text text-danger" *ngIf="pass1.invalid && (pass1.dirty || pass1.touched)">
+              <small *ngIf="pass1.errors['required']">Debe ingresar una contraseña</small>
+              <small *ngIf="pass1.errors['minlength']">El contraseña debe contener al menos 6 caracteres</small>
+              <small *ngIf="pass1.errors['maxlength']">La contraseña es muy larga</small>     
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="passDos">Confirmar contraseña</label>
+            <input type="password" class="form-control"  placeholder="Contraseña"  appConfirmPassword="pass" formControlName="passDos" [ngClass]="{'inputIsinvalid' :pass2.invalid && (pass2.dirty || pass2.touched)}">
+            <div class="form-text text-danger" *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)">
+              <small *ngIf="pass2.errors['required']">Debe confirmar la contraseña</small>
+              <small *ngIf="pass2.errors['appConfirmPassword']">Las contraseñas no coinciden</small>
+              <small *ngIf="!pass2.errors['appConfirmPassword'] && pass2.errors['minlength']">El contraseña debe contener al menos 6 caracteres</small>
+            </div>
+          </div>
+    
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" [disabled]="formRegistrar.invalid" (click)="GuardarNuevoUsuario()" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

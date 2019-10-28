@@ -1,0 +1,72 @@
+
+<div  class="container" *ngIf="mostrarChart">
+    <h1 class="mb-3" style="color:#7297d6; text-align:center;">Mesas mas usadas</h1>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+      <button class="btn bnt-md btn-primary btnExport" (click)="ExportarAExcel(usosMesas,'MesasMasUsadas')" data-toggle="tooltip" data-placement="left" title="Exportar a excel"><i class="fas fa-file-excel"></i> Exportar</button>
+
+    </div>
+    <button (click)="traerUsos()"><i class="fas fa-sync-alt"></i></button>
+    
+    <h1 class="mb-3" style="color:#7297d6; text-align:center;">Total facturado por mesa</h1>
+    <div style="display: block" *ngIf="mostrarChartPie">
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+              <button class="btn bnt-md btn-primary btnExport" (click)="ExportarAExcel(facturasMesas,'TotalFacturadoXmesa')" data-toggle="tooltip" data-placement="left" title="Exportar a excel"><i class="fas fa-file-excel"></i> Exportar</button>
+
+    </div>  
+    <button (click)="mesasTotal()"><i class="fas fa-sync-alt"></i></button>
+
+    <h1 class="mb-3" style="color:#7297d6; text-align:center;">Mejores y peores facturas</h1>
+    <table class="table table-responsive-sm" style="margin-top: 20px;" id="my-table">
+      <thead>
+        <tr style="text-align: center;">
+          <th scope="col">Nº Mesa</th>
+          <th scope="col">Mas alta</th>
+          <th scope="col">Mas baja</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataFacturasTable; index as i" style="text-align: center;">
+          <th scope="row">{{item.nro_mesa}}</th> 
+          <th >{{item.alto}}</th> 
+          <td>{{item.bajo}}</td> 
+        </tr>
+
+    
+      </tbody>
+      <tfoot>
+        <td colspan="3">   
+          <button class="btn bnt-md btn-success btnExport" (click)="exportarPdf()" data-toggle="tooltip" data-placement="left" title="Exportar a pdf"><i class="fas fa-file-pdf"></i>Exportar Excel</button>
+          <button class="btn bnt-md btn-primary btnExport" (click)="ExportarAExcel(dataFacturasTable,'MejoresYpeoresFacturas')" data-toggle="tooltip" data-placement="left" title="Exportar a excel"><i class="fas fa-file-excel"></i> Exportar PDF</button>
+        </td>
+      </tfoot>
+      
+    </table>
+
+
+    <h1 class="mb-3" style="color:#7297d6; text-align:center;">Total facturado ultimos 6 meses</h1>
+    <div style="display: block;" *ngIf="mostrarChartTiempo">
+      <canvas baseChart width="400" height="400"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+      </div>
+</div>
+

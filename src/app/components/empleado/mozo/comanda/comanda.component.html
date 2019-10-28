@@ -1,0 +1,226 @@
+<div class="container-fluid ajustes" *ngIf="mostrarPrincipal">
+
+  <div class="row">
+    <div class="col-md-8" >
+      <form name="form" [formGroup]='formComanda'>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nombre</label>
+            <input type="text" class="form-control"  placeholder="Nombre" formControlName="nombreCliente" [ngClass]="{'inputIsinvalid' : name.invalid && (name.dirty || name.touched), 'inputIsinvalid' :name.invalid && (name.dirty || name.touched)}">
+            <div class="form-text text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+              <small *ngIf="name.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputApellido4">Nº Mesa</label>
+            <select id="inputState" class="form-control" formControlName="mesa"  [ngClass]="{'inputIsinvalid' : mesa.invalid && (mesa.dirty || mesa.touched), 'inputIsinvalid' :mesa.invalid && (mesa.dirty || mesa.touched)}">
+              <option selected disabled value="">Elija una opcion</option>           
+                <option *ngFor="let item of mesasFree">{{item.nro_mesa}}</option>             
+            </select><button class="btn btn-sm btn-info" (click)="recargarMesas()"><i class="fas fa-sync"></i></button>
+            <div class="form-text text-danger" *ngIf="mesa.invalid && (mesa.dirty || mesa.touched)">
+              <small *ngIf="mesa.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div> 
+        </div>
+        <div class="form-group">
+          <label for="inputComensales">Cantidad comensales</label>
+          <input type="number" class="form-control"  placeholder="Cantidad Comensales" formControlName="comensales" [ngClass]="{'inputIsinvalid' : comensales.invalid && (comensales.dirty || comensales.touched), 'inputIsinvalid' :comensales.invalid && (comensales.dirty || comensales.touched)}">
+          <div class="form-text text-danger" *ngIf="comensales.invalid && (comensales.dirty || comensales.touched)">
+            <small *ngIf="comensales.errors['required']">Debe seleccionar una opcion.</small>
+          </div>
+        </div>   
+        
+      </form>    
+      <div class="container cardsContainer">
+        <div class="row flexproperty">
+            <div class="card col-xs-12  col-lg-4 cervezaStyle">
+                <div class="card-header">                  
+                  Cervezas
+                </div>
+                <ul class="list-group list-group-flush">
+                <form name="formBeer" [formGroup]='formBeer'>
+                  <select id="inputState" class="form-control" formControlName="codCerveza">
+                    <option selected disabled value="">Elija una opcion</option>
+                 
+                      <option value="100"> $100 - Rubia</option>   
+                      <option value="101"> $110 - Negra</option>   
+                      <option value="102"> $110 - Roja</option>   
+                      <option value="103"> $120 - Ipa</option>           
+                  </select>
+                  <li class="list-group-item">
+                    <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantCervezas">
+                  </li>
+                </form>
+                  <li class="list-group-item">
+                    <button class="btn btn-md btn-sucess" [disabled]="formBeer.invalid" (click)="agregarCerveza()">Agregar al pedido</button>
+                  </li>
+                </ul>
+    
+            </div> 
+            <div class="card col-xs-12 col-lg-4 bebidasStyle" >
+                <div class="card-header">
+                    
+                  Otras bebidas
+                </div>
+                <ul class="list-group list-group-flush">
+                  <form name="formBebidas" [formGroup]='formBebidas'>
+                  <select id="inputState" class="form-control" formControlName="codBebida">
+                    <option selected disabled value="">Elija una opcion</option>
+                 
+                      <option value='200'> $150 - Vino tinto UTN</option>   
+                      <option value="201"> $130 - Vino blanco UTN</option>   
+                      <option value="202"> $50  - Agua</option>   
+                      <option value="203"> $70  - Gaseosa Cola</option>    
+                      <option value="204"> $130 - Martini</option>    
+                      <option value="205"> $130 - Cosmopolitan</option>           
+                  </select>
+                  <li class="list-group-item">
+                    <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantBebidas">
+                  </li>
+                  </form>
+                  <li class="list-group-item">
+                    <button class="btn btn-md btn-sucess" [disabled]="formBebidas.invalid" (click)="agregarBebida()">Agregar al pedido</button>
+                  </li>
+                </ul>
+            </div> 
+        </div>
+          <div class="row flexproperty">
+              <div class="card col-xs-12  col-lg-4 comidaStyle" >
+                  <div class="card-header">
+                      
+                    Platos
+                  </div>
+                  <ul class="list-group list-group-flush">
+                  <form name="formPlatos" [formGroup]='formPlatos'>
+                    <select id="inputState" class="form-control" formControlName="codPlato">
+                      <option selected disabled value="">Elija una opcion</option>
+                   
+                        <option value="300"> $600 - Asado para 4</option>   
+                        <option value="301"> $900 - Asado para 6</option>   
+                        <option value="302"> $150 - Ravioles con tuco</option>   
+                        <option value="303"> $150 - Ravioles salsa mixta</option>    
+                        <option value="304"> $150 - Hamburguesa con papas</option>    
+                        <option value="305"> $70  - Ensalada mixta</option>           
+                    </select>
+                    <li class="list-group-item">
+                      <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantPlatos">
+                    </li>
+                  </form>
+                    <li class="list-group-item">
+                      <button class="btn btn-md btn-sucess" [disabled]="formPlatos.invalid" (click)="agregarPlato()">Agregar al pedido</button>
+                    </li>
+                  </ul>
+              </div> 
+              <div class="card col-xs-12  col-lg-4 postreStyle" >
+                  <div class="card-header">
+                    Postres
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <form name="formPostres" [formGroup]='formPostres'>
+                    <select id="inputState" class="form-control" formControlName="codPostre">
+                      <option selected disabled value="">Elija una opcion</option>
+                   
+                        <option value="400"> $60 - Flan</option>   
+                        <option value="401"> $50 -  Postre chocolate</option>   
+                        <option value="402"> $60 - Budin de pan</option>   
+                        <option value="403"> $70 - Helado</option>    
+                        <option value="404"> $70 - Panqueque de manzana</option>          
+                    </select>
+                    <li class="list-group-item">
+                      <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantPostres">
+                    </li>
+                    </form>
+                    <li class="list-group-item">
+                      <button class="btn btn-md btn-sucess" [disabled]="formPostres.invalid" (click)="agregarPostre()">Agregar al pedido</button>
+                    </li>
+                  
+                  </ul>
+              </div> 
+          </div>
+    </div>    
+
+  </div>
+
+
+      <div class="col-md-4 col-xs-12">
+        <div class="borradorComanda">
+          <table class="table table-responsive-sm tableBackground">
+            <thead>
+              <tr style="text-align: center;">
+                <th scope="col">CodProd</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Remover</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="items.length == 0">
+                <td></td>
+                <td></td>
+                <td><mat-spinner
+                  [value]="Esperando" [color]="warn">
+                </mat-spinner></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr *ngFor="let item of items; index as i" style="text-align: center;">
+                <th scope="row">{{ item.cod_prod}}</th> 
+                <td>{{item.cod_prod | codPipe}}</td>
+                <td>{{item.cantidad}}</td>
+                <td>{{item.estado | estadoPedido }}</td>
+                <td><button class="btn btn-md btn-danger" (click)="eliminarXindex(i)"><i class="fas fa-times"></i></button></td>
+              </tr>
+          
+            </tbody>
+            <tfoot *ngIf="items.length !== 0">
+              <tr>
+                <td><strong>TOTAL</strong></td>
+                <td></td>
+                <td>${{total}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tfoot>
+            
+          </table>
+          
+
+          <button class="btn btn-md btn-success" [disabled]="formComanda.invalid || items.length == 0" data-toggle="modal" data-target="#exampleModalCenter">Enviar pedido</button>
+        </div>
+      </div>
+   </div>       
+</div>
+
+<div class="container" *ngIf="mostrarDivIdPedido">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Pedido entregado!</h4>
+    <p>Por favor entregue este codigo al cliente <strong>{{miCodigoPedido}}</strong></p>
+    <hr>
+    <p class="mb-0">Todos los pedidos podran ser viston en la lista de pedidos.</p>
+    <button class="btn btn-md btn-success" (click)="cerrarModal()">Entregado</button>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">¿Desea confirmar y enviar el pedido?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="enviarPedido()">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

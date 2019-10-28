@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+   width: 16%;
+
+  }
+
+  .inputIsinvalid{
+    border-color: red;
+}
+.btn-info
+{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.mat-table {
+  display: table;
+  width: 100%;
+
+  > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0;
+      border: none;
+
+      > .mat-header-cell, > .mat-cell {
+          display: table-cell;
+          height: 48px;
+          vertical-align: middle;
+
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+  }
+}
+

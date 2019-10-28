@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <h1 class="mb-3" style="color:#7297d6; text-align:center;">Estado de Pedidos</h1>
+  <button class="btn btn-md" (click)="reload()"><i class="fas fa-sync-alt"></i>Actualizar pedidos</button>
+  <table class="table table-responsive-sm tableBackground">
+    <thead>
+      <tr style="text-align: center;">
+        <th scope="col">Id pedido</th>
+        <th scope="col">CodProd</th>
+        <th scope="col">Mesa</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Estado</th>
+        <th scope="col" >Cambiar Estado</th> 
+        <th scope="col">Demora</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; index as i" style="text-align: center;">
+        <th scope="row">{{item.id}}</th> 
+        <th >{{item.cod_plato}}</th> 
+        <td>{{item.nro_mesa}}</td>
+        <td>{{item.cliente}}</td>
+        <td>{{item.cod_plato | codPipe}}</td>
+        <td>{{item.cantidad}}</td>
+        <td [ngClass]="{'text-secondary' : item.estado == 0, 'text-warning' : item.estado ==1, 'text-primary': item.estado == 2, 'text-succes': item.estado ==3}">
+          {{item.estado | estadoPedido}}
+        </td>
+        <td>
+          <button class="btn btn-warning" *ngIf="item.estado == 0 && rol == 5" data-toggle="modal" data-target="#exampleModal" (click)="salvarParaEnviar(item.id,item.cod_plato)">En preparacion</button>
+          <button class="btn btn-info" *ngIf="item.estado == 1 && rol ==5"   (click)="cambiarEstadoPservir(item.id,item.cod_plato)">Para servir</button>
+          <button class="btn btn-warning" *ngIf="item.estado == 0 && rol == 6" data-toggle="modal" data-target="#exampleModal" (click)="salvarParaEnviar(item.id,item.cod_plato)">En preparacion</button>
+          <button class="btn btn-info" *ngIf="item.estado == 1 && rol ==6"  (click)="cambiarEstadoPservir(item.id,item.cod_plato)">Para servir</button>
+          <button class="btn btn-warning" *ngIf="item.estado == 0 && rol == 7" data-toggle="modal" data-target="#exampleModal" (click)="salvarParaEnviar(item.id,item.cod_plato)">En preparacion</button>
+          <button class="btn btn-info" *ngIf="item.estado == 1 && rol ==7"  (click)="cambiarEstadoPservir(item.id,item.cod_plato)">Para servir</button>
+          <button class="btn btn-warning" *ngIf="item.estado == 0 && rol == 8" data-toggle="modal" data-target="#exampleModal" (click)="salvarParaEnviar(item.id,item.cod_plato)">En preparacion</button>
+          <button class="btn btn-info" *ngIf="item.estado == 1 && rol ==8"  (click)="cambiarEstadoPservir(item.id,item.cod_plato)">Para servir</button>
+          <button class="btn btn-success" *ngIf="rol == 4"  [disabled]="item.estado !== 2" (click)="cambiarEstadoComiendo(item.id,item.cod_plato)">Clientes comiendo</button>
+        </td>
+        <td *ngIf="item.estado !== 2 && item.estado !== 3">{{item.demora | demoraPedido}} Minutos</td>
+        <td *ngIf="item.estado == 3 || item.estado == 2">-</td>
+      </tr>
+      <tr *ngIf="items.length === 0">
+        <td colspan="8" style="text-align: center;">No hay pedidos para mostrar.</td>
+      </tr>
+  
+    </tbody>
+    
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >Indique el tiempo estimado de demora</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{idPedidoParaEstado}}
+        <input class="form-control" type="number" placeholder="Minutos" [(ngModel)]="tiempo">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" [disabled]="tiempo <= 0" class="btn btn-primary" data-dismiss="modal" (click)="cambiarEstadoPreparacion(idPedidoParaEstado,codPlatoParaEstado)">Cambiar estado</button>
+      </div>
+    </div>
+  </div>
+</div>

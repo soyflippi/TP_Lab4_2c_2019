@@ -1,0 +1,20 @@
+.titulo
+{
+    text-align: center;
+    color: white;
+}
+
+.table
+{
+    background: white;
+}
+
+
+.btnExport
+{
+  float: right;
+}
+
+h1{
+  margin-top: 1em;
+}

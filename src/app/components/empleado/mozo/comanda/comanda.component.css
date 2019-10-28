@@ -1,0 +1,66 @@
+.container
+{
+    margin-top: 50px;
+}
+
+.cervezaStyle
+{
+    
+    background: url("../../../../../assets/backCerveza.jpg");
+    
+}
+
+.bebidasStyle
+{
+    
+    background: url("../../../../../assets/wineBack.jpg");
+}
+
+.comidaStyle
+{   
+    
+    background: url("../../../../../assets/food2Back.jpg");
+}
+
+.postreStyle
+{
+    
+    background: url("../../../../../assets/postre2.jpg");
+}
+
+
+ul,li{
+    background: transparent;
+}
+
+.tableBackground
+{
+    background-image: url('../../../../../assets/borradorMozo.jpg');
+    align-content: center;
+}
+
+.borradorComanda{
+    margin-top: 50px;
+}
+
+
+.flexproperty{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.spinnert
+{
+    margin-left: 50%;
+
+}
+
+.inputIsinvalid{
+    border-color: red;
+}
+
+label{
+    color: white;
+}
+

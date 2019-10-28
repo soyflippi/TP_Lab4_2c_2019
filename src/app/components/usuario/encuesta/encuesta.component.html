@@ -1,0 +1,117 @@
+<div class="container mx-auto col-lg-4 col-xs-12" >
+  
+  <div class="card margenCard" *ngIf="mostrarSinEncuesta">
+    <div class="card-body">
+      <h5 class="card-title">No hay encuestas para mostrar</h5>
+      <p class="card-text">La proxima vez que vengas busca tu pedido y podras opinar sobre nuestro restaurant.</p>
+      <p class="card-text">Gracias!</p>
+    </div>
+  </div>
+
+  <div class="card bg-success cardSucces" *ngIf="mostrarSuccesEncuesta">
+    <div class="card-body">
+      <h5 class="card-title">Se guardo tu respuesta</h5>
+      <p class="card-text">Gracias por tu tiempo, esperamos verte prontos.</p>
+      <p class="card-text">Saludos La comanda.</p>
+    </div>
+  </div>
+
+  <h1 class="mb-3" style="color:#7297d6; text-align:center; margin-top: 1em;" *ngIf="mostrarEncuesta">Dejanos tu opinón</h1>
+
+  <div class="card text-center margenCard" *ngIf="mostrarEncuesta">
+
+    <div class="card-body">
+      <form name="form" [formGroup]='formEncuesta'>
+        
+          <div class="form-group">
+            <label for="inputState"><strong>¿Como evaluas la ubicacion de la mesa Nº {{mesaEncuesta}}?</strong></label>        
+            <select id="inputState" class="form-control" formControlName="mesaScore" [ngClass]="{'inputIsinvalid' : mesa.invalid && (mesa.dirty || mesa.touched), 'inputIsinvalid' :mesa.invalid && (mesa.dirty || mesa.touched)}">
+              <option selected disabled value="">Elija una opcion</option>
+           
+                <option value="1">1</option> 
+                <option value="2">2</option> 
+                <option value="3">3</option> 
+                <option value="4">4</option> 
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                <option value="7">7</option> 
+                <option value="8">8</option> 
+                <option value="9">9</option>
+                <option value="10">10</option>           
+            </select>
+            <div class="form-text text-danger" *ngIf="mesa.invalid && (mesa.dirty || mesa.touched)">
+              <small *ngIf="mesa.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputState"><strong>¿Que puntaje le darias a nuestro restaurant?</strong></label>        
+            <select id="inputState" class="form-control" formControlName="restScore" [ngClass]="{'inputIsinvalid' : resto.invalid && (resto.dirty || resto.touched), 'inputIsinvalid' :resto.invalid && (resto.dirty || resto.touched)}">
+              <option selected disabled value="">Elija una opcion</option>
+           
+                <option value="1">1</option> 
+                <option value="2">2</option> 
+                <option value="3">3</option> 
+                <option value="4">4</option> 
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                <option value="7">7</option> 
+                <option value="8">8</option> 
+                <option value="9">9</option>
+                <option value="10">10</option>           
+            </select>
+            <div class="form-text text-danger" *ngIf="resto.invalid && (resto.dirty || resto.touched)">
+              <small *ngIf="resto.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputState"><strong>¿Como evalua el desempeño del mozo?</strong></label>        
+            <select id="inputState" class="form-control" formControlName="mozoScore" [ngClass]="{'inputIsinvalid' : mozo.invalid && (mozo.dirty || mozo.touched), 'inputIsinvalid' :mozo.invalid && (mozo.dirty || mozo.touched)}">
+              <option selected disabled value="">Elija una opcion</option>
+           
+                <option value="1">1</option> 
+                <option value="2">2</option> 
+                <option value="3">3</option> 
+                <option value="4">4</option> 
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                <option value="7">7</option> 
+                <option value="8">8</option> 
+                <option value="9">9</option>
+                <option value="10">10</option>           
+            </select>
+            <div class="form-text text-danger" *ngIf="mozo.invalid && (mozo.dirty || mozo.touched)">
+              <small *ngIf="mozo.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputState"><strong>¿Que puntaje le darias a la comida?</strong></label>        
+            <select id="inputState" class="form-control" formControlName="comidaScore" [ngClass]="{'inputIsinvalid' : comida.invalid && (comida.dirty || comida.touched), 'inputIsinvalid' :comida.invalid && (comida.dirty || comida.touched)}">
+              <option selected disabled value="">Elija una opcion</option>
+           
+                <option value="1">1</option> 
+                <option value="2">2</option> 
+                <option value="3">3</option> 
+                <option value="4">4</option> 
+                <option value="5">5</option> 
+                <option value="6">6</option> 
+                <option value="7">7</option> 
+                <option value="8">8</option> 
+                <option value="9">9</option>
+                <option value="10">10</option>           
+            </select>
+            <div class="form-text text-danger" *ngIf="comida.invalid && (comida.dirty || comida.touched)">
+              <small *ngIf="comida.errors['required']">Debe seleccionar una opcion.</small>
+            </div>
+          </div> 
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Contanos tu experiencia</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="texto" placeholder="Minimo 15 caracteres"></textarea>
+          </div>
+          
+        
+  
+        <button type="submit" class="btn btn-primary" [disabled]="formEncuesta.invalid" (click)="GuardarNuevaEncuesta()">Enviar</button>
+      </form>
+    </div>
+  </div>
+  </div>

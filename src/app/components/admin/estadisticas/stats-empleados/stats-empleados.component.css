@@ -1,0 +1,53 @@
+.table{
+    background: white;
+    margin-top: 2em;
+}
+
+.btnExport
+{
+  float: right;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    flex: 0 0 75px;
+
+  }
+
+
+  .inputIsinvalid{
+    border-color: red;
+}
+
+.mat-table {
+  display: table;
+  width: 100%;
+
+  > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0;
+      border: none;
+
+      > .mat-header-cell, > .mat-cell {
+          display: table-cell;
+          height: 48px;
+          vertical-align: middle;
+
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+  }
+}
+
+h1{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

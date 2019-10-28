@@ -5,20 +5,29 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-
-
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isAuthenticated) {
-      return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    const expectedRole = route.data.expectedRole;
+
+    if (!this.authService.isAuthenticated() || this.authService.getTipo() !== expectedRole) {
+      this.router.navigate(['/error']);
+      return false;
     }
+    return true
+    /*
+    if (this.auth.getTipo() === 3) { ADMIN
+    if ( this.auth.getTipo() === 2) { EMPLEADO
+    if ( this.auth.getTipo() ===  1) { USUARIO
+    if (this.auth.getRol() === 4) { // MOZO
+    if ( this.auth.getRol() !== 10 && this.auth.getRol() !== 4 && this.auth.getRol() !== 9 ) { PRODUCTOR
 
     // navigate to login page
     this.router.navigate(['/login']);
     // you can save redirect url so after authing we can move them back to the page they requested
     return false;
+    */
   }
 
 }

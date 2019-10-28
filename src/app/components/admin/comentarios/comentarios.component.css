@@ -1,0 +1,25 @@
+.card{
+    background: white;
+}
+
+.fuerte
+{
+    float: left;
+}
+
+.card-columns.container
+{
+    margin-top: 20px;
+}
+
+.floatright
+{
+    float: right;
+}
+
+.estrellas
+{
+    float: right;
+    color: #FFD700;
+    margin-right: 3px;
+}

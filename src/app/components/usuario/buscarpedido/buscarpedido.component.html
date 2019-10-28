@@ -1,0 +1,62 @@
+<div class="container" style="margin-top: 5%;">
+  <h1 class="mb-3" style="color:#7297d6;">Ingrese el codigo de su pedido:</h1>
+
+    <input type="text" class="form-control" placeholder="Codigo de Pedido" [(ngModel)]="cod_pedido">
+    <button class="btn btn-md" (click)="buscarPedido()">Buscar <i class="fas fa-search"></i></button>
+</div>
+
+<div class="container col-lg-4 conCard" *ngIf="mostrarPedido">
+    <div class="card" >
+        <div class="card-header bg-dark" style="color: white; text-align: center;">
+          <h2>Estado de los pedidos</h2>
+        </div>
+
+        <div class="card-body">
+                <p><strong>Nº de Mesa:</strong> {{pedidos[0].nro_mesa}}</p>
+                <p><strong>Comensales:</strong> {{pedidos[0].comensales}}</p>
+            <table class="table" style="text-align: center;">
+                <thead>
+                  <tr>
+                    <th scope="col">Pedido</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Demora</th>
+                    <th scope="col">Cancelar pedido</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of pedidos">
+                    <td >{{item.cod_plato | codPipe}}</td>
+                    <td >{{item.cantidad}}</td>
+                    <td [ngClass]="{'text-secondary' : item.estado == 0, 'text-warning' : item.estado ==1, 'text-primary': item.estado == 2, 'text-succes': item.estado ==3}">{{item.estado| estadoPedido}}</td>
+                    <td *ngIf="item.estado !== 2 && item.estado !== 3">{{item.demora | demoraPedido}} Minutos</td>
+                    <td *ngIf="item.estado == 3 || item.estado == 2">-</td>
+                    <td ><button class=" btn btn-danger btn-md" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="item.estado == 3 || item.estado == 2" (click)="GuardarDataParaEliminar(item.cod_plato,item.cantidad,item.estado,item.id)"><i class="fas fa-times-circle"></i></button></td>
+                  </tr>
+                 
+                </tbody>
+
+                
+              </table>
+        <div>
+      </div>
+  </div>
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">¿Esta seguro que desea cancelar el pedido?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelarPedio()">Si, cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>

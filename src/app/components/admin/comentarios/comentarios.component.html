@@ -1,0 +1,32 @@
+<h1 class="mb-3" style="color:#7297d6; text-align:center;">Mejores y peores comentarios</h1>
+<button class="btn btn-md btn-primary" style="text-align: center; position: fixed; bottom: 50%"  *ngIf="mostrarBuenos" data-toggle="tooltip" data-placement="right" title="Traer nuevos comentarios" (click)="veinteRnd()"><i class="fas fa-random"></i></button>
+<div class="container card-columns" *ngIf="mostrarBuenos">
+<div class="card"  *ngFor="let item of DataComentariosBuenos">
+      <div class="card-body">
+          <h5 class="card-title">Mesa Nº {{item.nro_mesa}} <i class="far fa-thumbs-up floatright" style="color: #5cb85c"></i></h5>
+          <strong class="fuerte">Mesa:  </strong><ngb-rating class="estrellas" [(rate)]="item.mesaScore" [readonly]="true"></ngb-rating><br>
+          <strong class="fuerte">Mozo:  </strong><ngb-rating class="estrellas" [(rate)]="item.mozoScore" [readonly]="true"></ngb-rating><br>
+          <strong class="fuerte">Restaurant:  </strong><ngb-rating class="estrellas" [(rate)]="item.restoScore" [readonly]="true"></ngb-rating><br>
+          <strong class="fuerte">Comida:  </strong><ngb-rating class="estrellas" [(rate)]="item.comidaScore" [readonly]="true"></ngb-rating><br>
+          <hr>
+          <p class="card-text">" {{item.opinion}} "</p>
+          <p class="card-text"><small class="text-muted">- {{item.nombre}} {{item.apellido}}</small></p>
+        </div>
+      </div>
+
+      <div class="card"  *ngFor="let item of DataComentariosMalos">
+          <div class="card-body">
+              <h5 class="card-title">Mesa Nº {{item.nro_mesa}} <i class="far fa-thumbs-down floatright" style="color: #d9534f;"></i></h5>
+              <strong class="fuerte">Mesa:  </strong><ngb-rating class="estrellas" [(rate)]="item.mesaScore" [readonly]="true"></ngb-rating><br>
+              <strong class="fuerte">Mozo:  </strong><ngb-rating class="estrellas" [(rate)]="item.mozoScore" [readonly]="true"></ngb-rating><br>
+              <strong class="fuerte">Restaurant:  </strong><ngb-rating class="estrellas" [(rate)]="item.restoScore" [readonly]="true"></ngb-rating><br>
+              <strong class="fuerte">Comida:  </strong><ngb-rating class="estrellas" [(rate)]="item.comidaScore" [readonly]="true"></ngb-rating><br>
+              <hr>
+              <p class="card-text">" {{item.opinion}} "</p>
+              <p class="card-text"><small class="text-muted"  style="color: white">- {{item.nombre}} {{item.apellido}}</small></p>
+            </div>
+          </div>
+
+
+</div>
+
