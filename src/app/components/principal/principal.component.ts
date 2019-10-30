@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {Usuario} from '../../clases/usuario';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { UsuariosService } from 'src/app/servicios/usuarios.service';
+import {Usuario} from '../../classes/usuario';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 
 @Component({

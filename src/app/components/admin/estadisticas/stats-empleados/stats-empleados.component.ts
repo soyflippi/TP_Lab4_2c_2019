@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import { AdminService } from 'src/app/servicios/admin.service';
+import { AdminService } from 'src/app/services/admin.service';
 import { Observable } from 'rxjs';
-import { ExcelService } from 'src/app/servicios/excel.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -29,8 +29,8 @@ export class StatsEmpleadosComponent implements OnInit {
   displayedColumns: string[] = ['codemp', 'nombre', 'apellido', 'usuario', 'rol', 'entrada', 'salida', 'operaciones'];
   dataSource;
   logins: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   // PolarArea
   public mostrarPolar = false;

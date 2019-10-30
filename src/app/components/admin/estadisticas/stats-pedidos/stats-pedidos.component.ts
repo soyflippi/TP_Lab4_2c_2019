@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/servicios/admin.service';
-import { ExcelService } from 'src/app/servicios/excel.service';
+import { AdminService } from 'src/app/services/admin.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { throwError } from 'rxjs';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';

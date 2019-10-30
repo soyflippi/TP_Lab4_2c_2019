@@ -76,7 +76,6 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthAdminService, AuthEmpleadoService, AuthUserService, SinLogearAuthService, AuthWardService,
-    AuthService, AuthmozoService, AuthproductorService]
+  providers: [AuthService]
 })
 export class AppRoutingModule { }

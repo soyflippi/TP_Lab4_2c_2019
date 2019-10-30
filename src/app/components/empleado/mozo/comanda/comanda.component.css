@@ -6,26 +6,26 @@
 .cervezaStyle
 {
     
-    background: url("../../../../../assets/backCerveza.jpg");
+    background-color: white;
     
 }
 
 .bebidasStyle
 {
     
-    background: url("../../../../../assets/wineBack.jpg");
+    background-color: white;
 }
 
 .comidaStyle
 {   
     
-    background: url("../../../../../assets/food2Back.jpg");
+    background-color: white;
 }
 
 .postreStyle
 {
     
-    background: url("../../../../../assets/postre2.jpg");
+    background-color: white;
 }
 
 
@@ -35,7 +35,7 @@ ul,li{
 
 .tableBackground
 {
-    background-image: url('../../../../../assets/borradorMozo.jpg');
+    background-color: white;
     align-content: center;
 }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpserviceService } from './httpservice.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserData } from '../componentes/admin/emp-list/emp-list.component';
+import { UserData } from '../components/admin/emp-list/emp-list.component';
 import { RequestOptions } from '@angular/http';
 
 @Injectable({

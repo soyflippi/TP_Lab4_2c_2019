@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidosService } from 'src/app/servicios/pedidos.service';
+import { PedidosService } from 'src/app/services/pedidos.service';
 import {MatSnackBar} from '@angular/material';
-import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-buscarpedido',

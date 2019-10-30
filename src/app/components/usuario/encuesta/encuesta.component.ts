@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsuariosService } from 'src/app/servicios/usuarios.service';
-import { Usuario } from 'src/app/clases/usuario';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Usuario } from 'src/app/classes/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-encuesta',

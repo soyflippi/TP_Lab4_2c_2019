@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/servicios/admin.service';
+import { AdminService } from 'src/app/services/admin.service';
 import {MatSnackBar} from '@angular/material';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { PedidosService } from 'src/app/servicios/pedidos.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { PedidosService } from 'src/app/services/pedidos.service';
 
 @Component({
   selector: 'app-mesas',

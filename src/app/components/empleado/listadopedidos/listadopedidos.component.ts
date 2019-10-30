@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidosService } from 'src/app/servicios/pedidos.service';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { PedidosService } from 'src/app/services/pedidos.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-listadopedidos',

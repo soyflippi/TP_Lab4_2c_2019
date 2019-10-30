@@ -2,8 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {CodprodToNamePipe} from '../../../../pipes/codprod-to-name.pipe';
-import { MozoService } from 'src/app/servicios/mozo.service';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { MozoService } from 'src/app/services/mozo.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { PrecioProductoPipe } from 'src/app/pipes/precio-producto.pipe';
 
 
