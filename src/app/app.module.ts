@@ -98,7 +98,7 @@ import { ComentariosComponent } from './components/admin/comentarios/comentarios
     NgbModule
   ],
   exports: [StyleModule],
-  providers: [HttpserviceService, UsuariosService, AuthService, {
+  providers: [HttpserviceService, UsuariosService, AuthService, AuthGuardService, {
     provide: HTTP_INTERCEPTORS,
     useClass: JWTInterceptor,
     multi: true
