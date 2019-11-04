@@ -30,7 +30,7 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
 {
   path: 'Admin', component: AdminComponent,
   canActivate: [AuthGuardService],
-  data: { expectedRole: 3 },
+  data: { expectedType: 3 },
   children: [
     { path: 'ListEmpleados', component: EmpListComponent },
     { path: 'Pedidos', component: ListadopedidosComponent },
@@ -48,7 +48,7 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
 {
   path: 'Empleado', component: EmpleadoComponent,
   canActivate: [AuthGuardService],
-  data: { expectedRole: 2 },
+  data: { expectedType: 2 },
   children: [
     {
       path: 'Mozo', component: MozoComponent,
@@ -65,7 +65,7 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
 {
   path: 'Cliente', component: UsuarioComponent,
   canActivate: [AuthGuardService],
-  data: { expectedRole: 1 },
+  data: { expectedType: 1 },
   children: [
     { path: 'BuscarPedido', component: BuscarpedidoComponent },
     { path: 'Encuesta', component: EncuestaComponent }

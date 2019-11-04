@@ -18,7 +18,7 @@ export class ListadopedidosComponent implements OnInit {
 
   constructor(private pedidosLive: PedidosService, private miauth: AuthService) {
     this.tiempo = 0;
-   }
+  }
 
   ngOnInit() {
     this.rol = this.miauth.getRol();
@@ -28,42 +28,39 @@ export class ListadopedidosComponent implements OnInit {
     }
   }
 
-  salvarParaEnviar(id: any, cod: any)
-  {
+  salvarParaEnviar(id: any, cod: any) {
     this.idPedidoParaEstado = id;
     this.codPlatoParaEstado = cod;
-
   }
 
 
-    ///HACER ALGO CON LO QUE DEVULEVE MOSTRARLE ALGO AL USER VIEJO
-  cambiarEstadoPreparacion(id, codprod){
-    let pedido = {idPedido: this.idPedidoParaEstado, cod_plato: this.codPlatoParaEstado, tiempo: this.tiempo};
+  ///HACER ALGO CON LO QUE DEVULEVE MOSTRARLE ALGO AL USER VIEJO
+  cambiarEstadoPreparacion(id, codprod) {
+    let pedido = { idPedido: this.idPedidoParaEstado, cod_plato: this.codPlatoParaEstado, tiempo: this.tiempo };
     this.pedidosLive.statePreparando(pedido);
     this.reload();
     //hacer algo con el return true;
   }
-  cambiarEstadoPservir(id, codprod){
-    let pedido = {idPedido: id, cod_plato: codprod, horaentrada: localStorage.getItem('horaentrada')};
+  cambiarEstadoPservir(id, codprod) {
+    let pedido = { idPedido: id, cod_plato: codprod, horaentrada: localStorage.getItem('horaentrada') };
     this.pedidosLive.statePservir(pedido);
     this.reload();
   }
-  cambiarEstadoComiendo(id, codprod){
-    let pedido = {idPedido: id, cod_plato: codprod, horaentrada: localStorage.getItem('horaentrada')};
+  cambiarEstadoComiendo(id, codprod) {
+    let pedido = { idPedido: id, cod_plato: codprod, horaentrada: localStorage.getItem('horaentrada') };
     this.pedidosLive.stateComiendo(pedido);
     this.reload();
   }
 
-  public reload()
-  {
+  public reload() {
     this.pedidosLive.TraerPedidos(this.rol)
-    .then( data => {
-      console.log(data);
-      this.items = data;
+      .then(data => {
+        console.log(data);
+        this.items = data;
 
-    })
-    .catch( error => {
-      console.log(error);
-    });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }

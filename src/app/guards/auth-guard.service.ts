@@ -10,11 +10,16 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const expectedRole = route.data.expectedRole;
+    const expectedType = route.data.expectedType;
+    console.log(expectedRole, this.authService.getTipo(), this.authService.getRol());
 
-    if (!this.authService.isAuthenticated() || this.authService.getTipo() !== expectedRole) {
+    if (!this.authService.isAuthenticated()
+      || (expectedType && this.authService.getTipo() !== expectedType)
+      || (expectedRole && this.authService.getRol() !== expectedRole)) {
       this.router.navigate(['/error']);
       return false;
     }
+
     return true
     /*
     if (this.auth.getTipo() === 3) { ADMIN
