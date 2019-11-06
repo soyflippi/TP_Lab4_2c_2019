@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="mb-3" style="color:#7297d6; text-align:center;">Operaciones por sector</h1>
+<h1 class="mb-3" style="color:black; text-align:center;">Operaciones por sector</h1>
     <div style="display: block" *ngIf="mostrarPolar">
         <canvas baseChart
                 [data]="polarAreaChartData"
@@ -9,7 +9,7 @@
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
-      <h1 class="mb-3" style="color:#7297d6; text-align:center;">Operaciones por empleado</h1>
+      <h1 class="mb-3" style="color:black; text-align:center;">Operaciones por empleado</h1>
       <table class="table table-responsive-sm">
         <thead>
           <tr style="text-align: center;">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="container col-lg-6 mt-5" style="margin-bottom: 15px;">
-  <h1 class="mb-3" style="color:#7297d6; text-align:center;">Registro de entradas y salidas</h1>
+  <h1 class="mb-3" style="color:black; text-align:center;">Registro de entradas y salidas</h1>
   <mat-form-field style="background: white">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
