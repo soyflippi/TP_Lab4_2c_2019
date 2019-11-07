@@ -17,6 +17,8 @@ export class RolPipe implements PipeTransform {
         return 'Cocinero';
       case 8:
         return 'Repostero';
+      case 9:
+        return 'Cliente';
       case 10:
         return 'Socio';
 
