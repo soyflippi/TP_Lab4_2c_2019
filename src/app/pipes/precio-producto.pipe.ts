@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PrecioProductoPipe implements PipeTransform {
 
-  transform(value: number, exponent: string): number {
+  transform(value: number, exponent?: string): number {
     switch (value) {
       case 100:
         return 100;

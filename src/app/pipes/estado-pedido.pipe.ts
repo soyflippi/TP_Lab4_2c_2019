@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EstadoPedidoPipe implements PipeTransform {
 
-  transform(value: number, exponent: string): string {
+  transform(value: number, exponent?: string): string {
     switch (value) {
       case 0:
         return 'Pendiente';

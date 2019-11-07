@@ -37,7 +37,7 @@
       </div>
       <div class="form-group">
         <label for="pass">Contraseña</label>
-        <input type="password" class="form-control"  placeholder="Contraseña"  formControlName="pass"  [ngClass]="{'inputIsinvalid' : pass1.invalid && (pass1.dirty || pass1.touched), 'inputIsinvalid' :pass2.invalid && (pass2.dirty || pass2.touched)}">
+        <input type="password" class="form-control"  placeholder="Contraseña"  formControlName="pass"  [ngClass]="{'inputIsinvalid' : pass1.invalid && (pass1.dirty || pass1.touched), 'inputIsinvalid1' :pass2.invalid && (pass2.dirty || pass2.touched)}">
         <div class="form-text text-danger" *ngIf="pass1.invalid && (pass1.dirty || pass1.touched)">
           <small *ngIf="pass1.errors['required']">Debe ingresar una contraseña</small>
           <small *ngIf="pass1.errors['minlength']">El contraseña debe contener al menos 6 caracteres</small>
