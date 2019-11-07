@@ -16,9 +16,9 @@ export class CodprodToNamePipe implements PipeTransform {
       case 103:
         return 'Cerveza IPA';
       case 200:
-        return 'Vino tinto UTN';
+        return 'Vino tinto  ';
       case 201:
-        return 'Vino blanco UTN';
+        return 'Vino blanco  ';
       case 202:
         return 'Agua';
       case 203:
