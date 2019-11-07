@@ -53,11 +53,19 @@
           <small *ngIf="!pass2.errors['appConfirmPassword'] && pass2.errors['minlength']">El contraseña debe contener al menos 6 caracteres</small>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="formRegistrar.invalid" (click)="GuardarNuevoUsuario()">Crear usuario</button>
+
+      <div class="form-group">
+          <label for="file">Subir foto</label>
+          <input type="file" (change)="getImagen($event, imagen)" class="form-control"  placeholder="Foto" formControlName="file" [ngClass]="{'inputIsinvalid' :file.invalid && (file.dirty || file.touched)}">
+          <div class="form-text text-danger" *ngIf="file.invalid && (file.dirty || file.touched)">
+            <small *ngIf="file.errors['required']">Debe seleccionar una foto</small>
+          </div>
+        </div>      
+      <button type="submit" class="btn btn-success" [disabled]="formRegistrar.invalid" (click)="GuardarNuevoUsuario()">Crear usuario</button>
     </form>
   </div>
   <div class="">
-    <a [routerLink]="['/login']" style="color: 	black;">← Volver</a>
+    <a [routerLink]="['/login']" style="color: 	black;">Iniciar sesión</a>
   </div>
 </div>
 </div>

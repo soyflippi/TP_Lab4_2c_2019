@@ -7,4 +7,5 @@ export class Usuario {
     tipo_usuario: number;
     cod_emp: number;
     rol: number;
+    foto: string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Usuario } from 'src/app/classes/usuario';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -24,6 +24,7 @@ export class RegistrarComponent implements OnInit {
   usuarioCtrl: FormControl;
   passCtrl: FormControl;
   passDosCtrl: FormControl;
+  fileCtrl: FormControl;
 
 
   constructor(private miContructor: FormBuilder, private router: Router, private registrarServ: UsuariosService) {
@@ -34,17 +35,20 @@ export class RegistrarComponent implements OnInit {
   ngOnInit() {
     this.nombreCtrl = new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required, Validators.minLength(3)]);
     this.apellidoCtrl = new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required,
-     Validators.minLength(3), Validators.maxLength(50)]);
-    this.usuarioCtrl =  new FormControl('', [Validators.pattern('[a-zA-Z0-9-]+'), Validators.required,
-     Validators.minLength(3), Validators.maxLength(15)]);
+    Validators.minLength(3), Validators.maxLength(50)]);
+    this.usuarioCtrl = new FormControl('', [Validators.pattern('[a-zA-Z0-9-]+'), Validators.required,
+    Validators.minLength(3), Validators.maxLength(15)]);
     this.passCtrl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]);
     this.passDosCtrl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]);
+    this.fileCtrl = new FormControl('', [Validators.required]);
+
     this.formRegistrar = this.miContructor.group({
       nombre: this.nombreCtrl,
       apellido: this.apellidoCtrl,
-      usuario:  this.usuarioCtrl,
-      pass:   this.passCtrl,
+      usuario: this.usuarioCtrl,
+      pass: this.passCtrl,
       passDos: this.passDosCtrl,
+      file: this.fileCtrl
     });
   }
 
@@ -66,7 +70,9 @@ export class RegistrarComponent implements OnInit {
     return this.formRegistrar.get('passDos') as FormControl;
   }
 
-  
+  get file() {
+    return this.formRegistrar.get('file') as FormControl;
+  }
 
   public GuardarNuevoUsuario() {
     this.nuevoUsuario.nombre = this.formRegistrar.get('nombre').value;
@@ -81,14 +87,25 @@ export class RegistrarComponent implements OnInit {
         console.log(data);
         this.router.navigate(['/login']);
 
-        }
-      })
-        .catch( err => {
-          console.error(err);
-        });
-    }
+      }
+    })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
-
+  getImagen(readerEvt){
+    //console.log('change no input file', readerEvt);
+    let file = readerEvt.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = ()  => {
+      this.nuevoUsuario.foto  = reader.result.toString();
+    };
+    reader.onerror = function (error) {
+        console.log('Erro ao ler a imagem : ', error);
+    };
+}
 
 
 
