@@ -60,6 +60,7 @@ export class LoginComponent {
 
 
   iniciar() {
+    this.isError = false;
     this.usuario.pass = this.pass;
     this.usuario.user = this.user;
     console.log(this.usuario);

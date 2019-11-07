@@ -5,24 +5,24 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="isLoged == true">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="auth.isAuthenticated() == true">
       <li class="nav-item active">
         <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item" *ngIf="rol == 10">
+      <li class="nav-item" *ngIf="auth.getRol() == 10">
         <a class="nav-link" [routerLink]="[ '/Admin/ListEmpleados']">Empleados</a>
       </li>
-      <li class="nav-item" *ngIf="rol == 10">
+      <li class="nav-item" *ngIf="auth.getRol() == 10">
         <a class="nav-link" [routerLink]="[ '/Admin/Pedidos']">Pedidos</a>
       </li>
-      <li class="nav-item" *ngIf="rol == 10">
+      <li class="nav-item" *ngIf="auth.getRol() == 10">
         <a class="nav-link" [routerLink]="[ '/Admin/Mesas']">Mesas</a>
       </li>
-      <li class="nav-item" *ngIf="rol == 10">
-          <a class="nav-link" [routerLink]="[ '/Admin/Estadisticas/Comentarios']">Comentarios</a>
-        </li>
-<!--       <li class="nav-item dropdown" *ngIf="rol == 10">
+      <li class="nav-item" *ngIf="auth.getRol() == 10">
+        <a class="nav-link" [routerLink]="[ '/Admin/Estadisticas/Comentarios']">Comentarios</a>
+      </li>
+      <!--       <li class="nav-item dropdown" *ngIf="auth.getRol() == 10">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-chart-line"></i> Estadisticas
@@ -39,31 +39,30 @@
         </div>
       </li> -->
 
-      <li class="nav-item" *ngIf="rol == 4">
+      <li class="nav-item" *ngIf="auth.getRol() == 4">
         <a class="nav-link" [routerLink]="[ '/Empleado/Mozo/NuevaComanda']">Nueva Comanda</a>
       </li>
-      <li class="nav-item" *ngIf="rol == 4">
+      <li class="nav-item" *ngIf="auth.getRol() == 4">
         <a class="nav-link" [routerLink]="[ '/Empleado/PedidosLive']">Estado Pedidos</a>
       </li>
-      <li class="nav-item" *ngIf="rol == 4">
+      <li class="nav-item" *ngIf="auth.getRol() == 4">
         <a class="nav-link" [routerLink]="[ '/Empleado/Mozo/Mesas']">Mesas</a>
       </li>
 
-      <li class="nav-item" *ngIf="rol == 9">
+      <li class="nav-item" *ngIf="auth.getRol() == 9">
         <a class="nav-link" [routerLink]="[ '/Cliente/BuscarPedido']">Buscar pedido</a>
       </li>
 
-      <li class="nav-item" *ngIf="rol == 9">
+      <li class="nav-item" *ngIf="auth.getRol() == 9">
         <a class="nav-link" [routerLink]="['/Cliente/Encuesta']">Encuestas</a>
       </li>
 
-      <li class="nav-item" *ngIf="rol !== 9 && rol !== 10 && rol !== 4">
+      <li class="nav-item" *ngIf="auth.getRol() !== 9 && auth.getRol() !== 10 && auth.getRol() !== 4">
         <a class="nav-link" href="#">Pedidos actuales</a>
       </li>
     </ul>
-    <ul class="nav-item navbar-right" *ngIf="isLoged === true">
-      <button class="btn btn-lg btn-danger pull-right" (click)='Salir()'><i class="fas fa-sign-out-alt"></i>Salir</button>
+    <ul class="nav-item navbar-right" *ngIf="auth.isAuthenticated() == true">
+      <button class="btn btn-dark btn-clear pull-right" (click)='Salir()'>Cerrar sesión</button>
     </ul>
-
   </div>
 </nav>

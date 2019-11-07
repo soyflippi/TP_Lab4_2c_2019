@@ -16,10 +16,8 @@ export class PrincipalComponent implements OnInit {
   token: string;
   usuario = new Usuario();
   helper = new JwtHelperService();
-  isLoged: boolean;
 
   constructor(public router: Router, public RutaActivada: ActivatedRoute, public auth: AuthService, public userServ: UsuariosService) {
-    this.isLoged = false;
   }
 
   ngOnInit() {
@@ -27,7 +25,6 @@ export class PrincipalComponent implements OnInit {
 
     if (this.token !== null) {
       this.rol = this.auth.getRol();
-      this.isLoged = true;
       switch (this.auth.getRol()) {
         case 4:
         this.router.navigate(['/Empleado/Mozo/NuevaComanda']);
@@ -52,8 +49,6 @@ export class PrincipalComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('horaentrada');
     this.router.navigate(['']);
-    this.rol = 25;
-    this.isLoged = false;
   }
 
 }

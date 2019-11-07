@@ -25,7 +25,7 @@ export class AuthService {
     return tipo;
   }
 
-  public getHentrada(): number {
+  public getEntrada(): number {
     let token = this.getToken();
     let datos = jwt.decodeToken(token);
     let horaentrada = datos.data.horaentrada;
@@ -48,9 +48,10 @@ export class AuthService {
   public isAuthenticated(): boolean {
     // get the token
     const token = this.getToken();
+    if(token) return jwt.isTokenExpired(token);
     // return a boolean reflecting
     // whether or not the token is expired
-    return jwt.isTokenExpired(token);
+    return false;
   }
 
   private sleep(ms) {

@@ -1,4 +1,7 @@
 <div class="container  col-xs-12 col-lg-4 login">
+    <div *ngIf="isError" class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="usuario">Usuario</label>
