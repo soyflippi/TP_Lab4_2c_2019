@@ -10,7 +10,7 @@ export class DemoraPedidoPipe implements PipeTransform {
       case 0:
         return '-';
       default:
-        return value;
+        return value + 'min';
     }
   }
 

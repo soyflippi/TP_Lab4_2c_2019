@@ -1,31 +1,29 @@
 <div class="container mt-5">
-  <h1 class="mb-3" style="color:black; text-align:center;">Estado de Pedidos</h1>
+  <h1 class="mb-3" style="color:black; text-align:center;">Pedidos en curso</h1>
   <button class="btn btn-md" (click)="reload()"><i class="fas fa-sync-alt"></i></button>
   <table class="table table-responsive-sm tableBackground">
     <thead>
       <tr style="text-align: center;">
-        <th scope="col">Id pedido</th>
-        <th scope="col">CodProd</th>
-        <th scope="col">Mesa</th>
+        <th scope="col"># Pedido</th>
+        <th scope="col"># Mesa</th>
         <th scope="col">Cliente</th>
         <th scope="col">Producto</th>
-        <th scope="col">Cantidad</th>
         <th scope="col">Estado</th>
-        <th scope="col">Cambiar Estado</th>
         <th scope="col">Demora</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of items; index as i" style="text-align: center;">
         <th scope="row">{{item.id}}</th>
-        <th>{{item.cod_plato}}</th>
         <td>{{item.nro_mesa}}</td>
         <td>{{item.cliente}}</td>
-        <td>{{item.cod_plato | codPipe}}</td>
-        <td>{{item.cantidad}}</td>
+        <td>[{{item.cod_plato}}]{{item.cod_plato | codPipe}} x{{item.cantidad}}</td>
         <td [ngClass]="{'text-secondary' : item.estado == 0, 'text-warning' : item.estado ==1, 'text-primary': item.estado == 2, 'text-succes': item.estado ==3}">
           {{item.estado | estadoPedido}}
         </td>
+        <td *ngIf="item.estado !== 2 && item.estado !== 3">{{item.demora | demoraPedido}}</td>
+        <td *ngIf="item.estado == 3 || item.estado == 2">-</td>
         <td>
           <button class="btn btn-warning" *ngIf="item.estado == 0 && rol == 5" data-toggle="modal" data-target="#exampleModal"
             (click)="salvarParaEnviar(item.id,item.cod_plato)">En preparacion</button>
@@ -46,8 +44,6 @@
           <button class="btn btn-success" *ngIf="rol == 4" [disabled]="item.estado !== 2" (click)="cambiarEstadoComiendo(item.id,item.cod_plato)">Clientes
             comiendo</button>
         </td>
-        <td *ngIf="item.estado !== 2 && item.estado !== 3">{{item.demora | demoraPedido}} Minutos</td>
-        <td *ngIf="item.estado == 3 || item.estado == 2">-</td>
       </tr>
       <tr *ngIf="items.length === 0">
         <td colspan="8" style="text-align: center;">No hay pedidos para mostrar.</td>

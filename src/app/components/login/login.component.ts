@@ -31,30 +31,24 @@ export class LoginComponent {
     this.pass = 'admin';
   }
   cervecero() {
-    this.user = 'malte';
+    this.user = 'cervecero';
     this.pass = '123456';
   }
   mozo() {
-    this.user = 'mozo01';
+    this.user = 'mozo';
     this.pass = '123456';
   }
   cliente() {
-    this.user = 'user';
+    this.user = 'cliente';
     this.pass = 'user';
   }
-
   cocinero() {
-    this.user = 'marub';
-    this.pass = '123456';
-  }
-
-  repostero() {
-    this.user = 'tgod';
+    this.user = 'cocinero';
     this.pass = '123456';
   }
 
   bartender() {
-    this.user = 'ivop';
+    this.user = 'bartender';
     this.pass = '123456';
   }
 
