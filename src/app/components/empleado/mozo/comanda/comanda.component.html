@@ -115,32 +115,6 @@
               </li>
             </ul>
           </div>
-          <div class="card col-xs-12  col-lg-4 postreStyle">
-            <div class="card-header">
-              Postres
-            </div>
-            <ul class="list-group list-group-flush">
-              <form name="formPostres" [formGroup]='formPostres'>
-                <select id="inputState" class="form-control" formControlName="codPostre">
-                  <option selected disabled value="">Elija una opcion</option>
-
-                  <option value="400"> $60 - Flan</option>
-                  <option value="401"> $50 - Postre chocolate</option>
-                  <option value="402"> $60 - Budin de pan</option>
-                  <option value="403"> $70 - Helado</option>
-                  <option value="404"> $70 - Panqueque de manzana</option>
-                </select>
-                <li class="list-group-item">
-                  <input type="number" class="form-control" placeholder="Cantidad" formControlName="cantPostres">
-                </li>
-              </form>
-              <li class="list-group-item">
-                <button class="btn btn-md btn-sucess" [disabled]="formPostres.invalid" (click)="agregarPostre()">Agregar
-                  al pedido</button>
-              </li>
-
-            </ul>
-          </div>
         </div>
       </div>
 
@@ -152,11 +126,10 @@
         <table class="table table-responsive-sm tableBackground">
           <thead>
             <tr style="text-align: center;">
-              <th scope="col">CodProd</th>
+              <th scope="col">#</th>
               <th scope="col">Producto</th>
               <th scope="col">Cantidad</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Remover</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -174,7 +147,6 @@
               <th scope="row">{{ item.cod_prod}}</th>
               <td>{{item.cod_prod | codPipe}}</td>
               <td>{{item.cantidad}}</td>
-              <td>{{item.estado | estadoPedido }}</td>
               <td><button class="btn btn-md btn-danger" (click)="eliminarXindex(i)"><i class="fas fa-times"></i></button></td>
             </tr>
 
@@ -201,11 +173,11 @@
 
 <div class="container" *ngIf="mostrarDivIdPedido">
   <div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Pedido entregado!</h4>
-    <p>Por favor entregue este codigo al cliente <strong>{{miCodigoPedido}}</strong></p>
+    <h4 class="alert-heading">Pedido enviado</h4>
+    <p>Codigo para el cliente <strong>{{miCodigoPedido}}</strong></p>
     <hr>
-    <p class="mb-0">Todos los pedidos podran ser viston en la lista de pedidos.</p>
-    <button class="btn btn-md btn-success" (click)="cerrarModal()">Entregado</button>
+
+    <button class="btn btn-md btn-success" (click)="cerrarModal()">De acuerdo</button>
   </div>
 </div>
 
@@ -217,14 +189,14 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">¿Desea confirmar y enviar el pedido?</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">¿Estas seguro que deseas enviar el pedido?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="enviarPedido()">Si</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="enviarPedido()">Si</button>
       </div>
     </div>
   </div>
