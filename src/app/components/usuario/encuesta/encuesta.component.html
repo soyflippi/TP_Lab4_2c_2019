@@ -11,12 +11,12 @@
   <div class="card bg-success cardSucces" *ngIf="mostrarSuccesEncuesta">
     <div class="card-body">
       <h5 class="card-title">Se guardo tu respuesta</h5>
-      <p class="card-text">Gracias por tu tiempo, esperamos verte prontos.</p>
-      <p class="card-text">Saludos La comanda.</p>
+      <p class="card-text">Gracias por tu tiempo, esperamos verte pronto.</p>
+      <p class="card-text">FlippiBAR.</p>
     </div>
   </div>
 
-  <h1 class="mb-3" style="color:black; text-align:center; margin-top: 1em;" *ngIf="mostrarEncuesta">Dejanos tu opinón</h1>
+  <h1 class="mb-3" style="color:black; text-align:center; margin-top: 1em;" *ngIf="mostrarEncuesta">Encuesta de satisfacción</h1>
 
   <div class="card text-center margenCard" *ngIf="mostrarEncuesta">
 
@@ -110,7 +110,7 @@
 
 
 
-        <button type="submit" class="btn btn-primary" [disabled]="formEncuesta.invalid" (click)="GuardarNuevaEncuesta()">Enviar</button>
+        <button type="submit" class="btn btn-success" [disabled]="formEncuesta.invalid" (click)="GuardarNuevaEncuesta()">Enviar</button>
       </form>
     </div>
   </div>
