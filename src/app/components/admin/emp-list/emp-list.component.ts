@@ -17,7 +17,6 @@ export interface UserData {
   rol: string;
 }
 
-
 @Component({
   selector: 'app-emp-list',
   templateUrl: './emp-list.component.html',
@@ -34,8 +33,6 @@ export class EmpListComponent implements OnInit {
     { id: 6, name: 'Repostero' }
 
   ];
-
-
   datosUsuarios: UserData[];
   nuevoUsuario: Usuario;
   nombre: string;
@@ -59,11 +56,9 @@ export class EmpListComponent implements OnInit {
 
   constructor(private miContructor: FormBuilder, private router: Router, private adminServ: AdminService, public snackBar: MatSnackBar) {
 
-    this.dataSource = new MatTableDataSource;
-
     this.adminServ.traerEmpleados().subscribe(data => {
       console.log(data);
-      this.dataSource.data = data;
+      this.dataSource = data;
     });
 
     // Assign the data to the data source for the table to render
@@ -88,8 +83,6 @@ export class EmpListComponent implements OnInit {
       rol: this.rolCntrl
     });
 
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

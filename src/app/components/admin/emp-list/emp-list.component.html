@@ -4,75 +4,40 @@
 
   <button class="btn btn-success mb-2" type="button" data-toggle="modal" data-target="#exampleModalCenter">Crear
     nuevo empleado</button>
-  <mat-form-field style="background: white">
-    <input mat-input (keyup)="applyFilter($event.target.value)" placeholder="Buscar empleado...">
-  </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" [class.isMobile]="isMobile" matSort>
-
-    <ng-container matColumnDef="codemp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.cod_emp}}</span> </td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.nombre}}</span></td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="apellido">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
-      <td mat-cell *matCellDef="let row"> <span class="mobile-label">{{row.apellido}}</span></td>
-    </ng-container>
-
-
-    <ng-container matColumnDef="usuario">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">{{row.usuario}}</span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="estado">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> <span class="mobile-label">{{row.estado |
-          estado}}</span>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="rol">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> 
-        <span class="mobile-label">{{row.rol | rol}}</span></td>
-    </ng-container>
-
-    <ng-container matColumnDef="eliminar">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Eliminar </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color" style="text-align: center;"> <button class=" btn btn-secondary btn-md"
-          (click)="Eliminar(row.cod_emp)" [disabled]="row.estado == 3"><i class="fas fa-user-slash"></i></button></td>
-    </ng-container>
-
-    <ng-container matColumnDef="suspender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Suspender/Reincorporar </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color" style="text-align: center;">
-        <button *ngIf="row.estado == 1" class="btn btn-md btn-secondary" (click)="Suspender(row.cod_emp)"><i
-            class="fas fa-user-lock"></i></button>
-        <button *ngIf="row.estado == 2" class="btn btn-md btn-secondary" (click)="Reincorporar(row.cod_emp)"><i
-            class="fas fa-user-check"></i></button>
-        <button *ngIf="row.estado == 3" class="btn btn-md btn-secondary" disabled>Eliminado</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
+  <table class="table table-responsive-sm tableBackground">
+    <thead>
+      <tr style="text-align: center;">
+        <th scope="col"># ID</th>
+        <th scope="col">Nombre y Apellido</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataSource; index as i" style="text-align: center;">
+        <th scope="row">{{item.cod_emp}}</th>
+        <td>{{item.nombre}} {{item.apellido}}</td>
+        <td>{{item.usuario}}</td>
+        <td>{{item.estado}}</td>
+        <td>{{item.rol}}</td>
+        <td>
+          <button class=" btn btn-secondary btn-md" (click)="Eliminar(item.cod_emp)" [disabled]="item.estado == 3"><i
+              class="fas fa-user-slash"></i></button>
+          <button *ngIf="item.estado == 1" class="btn btn-md btn-secondary" (click)="Suspender(item.cod_emp)"><i class="fas fa-user-lock"></i></button>
+          <button *ngIf="item.estado == 2" class="btn btn-md btn-secondary" (click)="Reincorporar(item.cod_emp)"><i
+              class="fas fa-user-check"></i></button>
+          <button *ngIf="item.estado == 3" class="btn btn-md btn-secondary" disabled>Eliminado</button>
+        </td>
+      </tr>
+      <tr *ngIf="dataSource.length === 0">
+        <td colspan="8" style="text-align: center;">No hay empleados para mostrar.</td>
+      </tr>
+    </tbody>
   </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-
-
 
 <!--Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
