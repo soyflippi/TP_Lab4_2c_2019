@@ -3,7 +3,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/classes/usuario';
 import { Router } from '@angular/router';
-import { UsuariosService } from 'src/app/services/usuarios.service';
+import { ExcelService } from 'src/app/services/excel.service';
+import { PdfService } from 'src/app/services/pdf.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { RolDescPipe } from '../../../pipes/rol-desc';
 import { MatSnackBar } from '@angular/material';
@@ -29,8 +30,7 @@ export class EmpListComponent implements OnInit {
     { id: 2, name: 'Mozo' },
     { id: 3, name: 'Cervecero' },
     { id: 4, name: 'Cocinero' },
-    { id: 5, name: 'Bartender' },
-    { id: 6, name: 'Repostero' }
+    { id: 5, name: 'Bartender' }
 
   ];
   datosUsuarios: UserData[];
@@ -51,10 +51,10 @@ export class EmpListComponent implements OnInit {
   displayedColumns: string[] = ['codemp', 'nombre', 'apellido', 'usuario', 'estado', 'rol', 'eliminar', 'suspender'];
   dataSource;
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private miContructor: FormBuilder, private router: Router, private adminServ: AdminService, public snackBar: MatSnackBar) {
+  constructor(private miContructor: FormBuilder, private router: Router, private adminServ: AdminService, public snackBar: MatSnackBar, public excelService: ExcelService, public pdfService: PdfService) {
 
     this.adminServ.traerEmpleados().subscribe(data => {
       console.log(data);
@@ -166,8 +166,16 @@ export class EmpListComponent implements OnInit {
   reload() {
     this.adminServ.traerEmpleados().subscribe(data => {
       console.log(data);
-      this.dataSource.data = data;
+      this.dataSource = data;
     });
+  }
+
+  exportAsXLSX(): void {
+    this.excelService.exportAsExcelFile(this.dataSource, 'Listado Empleados');
+  }
+
+  exportAsPDF(): void {
+    this.pdfService.exportAsPDF('#tablaEmpleados', 'Listado Empleados');
   }
 }
 

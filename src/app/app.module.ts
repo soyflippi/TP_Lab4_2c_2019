@@ -102,7 +102,7 @@ import { ComentariosComponent } from './components/admin/comentarios/comentarios
     provide: HTTP_INTERCEPTORS,
     useClass: JWTInterceptor,
     multi: true
-  }],
+  }, { provide: 'Window', useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
