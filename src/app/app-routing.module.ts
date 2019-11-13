@@ -20,6 +20,7 @@ import { StatsPedidosComponent } from './components/admin/estadisticas/stats-ped
 import { StatsMesasComponent } from './components/admin/estadisticas/stats-mesas/stats-mesas.component';
 import { EncuestaComponent } from './components/usuario/encuesta/encuesta.component';
 import { ComentariosComponent } from './components/admin/comentarios/comentarios.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 
 const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -71,6 +72,10 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'Encuesta', component: EncuestaComponent }
   ]
 },
+{
+  path: 'Perfil', component: PerfilComponent,
+  canActivate: [AuthGuardService]
+}
 ];
 
 @NgModule({

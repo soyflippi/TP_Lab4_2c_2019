@@ -61,8 +61,13 @@
         <a class="nav-link" href="#">Pedidos actuales</a>
       </li>
     </ul>
-    <ul class="nav-item navbar-right" *ngIf="auth.isAuthenticated() == true">
-      <button class="btn btn-dark btn-clear pull-right" (click)='Salir()'>Cerrar sesión</button>
+    <ul class="navbar-nav mr-auto navbar-right" *ngIf="auth.isAuthenticated() == true">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/Perfil']">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-dark btn-clear pull-right" (click)='Salir()'>Cerrar sesión</button>
+      </li>
     </ul>
   </div>
 </nav>

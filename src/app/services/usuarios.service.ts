@@ -36,4 +36,8 @@ export class UsuariosService {
   BuscarEncuestasPendientes(userID) {
     return this.http.getHttp(this.url + '/Encuesta/BuscarEncuestaPendiente/' + userID);
   }
+
+  obtenerPerfil(emp) {
+    return this.http.postHttp(this.url + '/Publico/Perfil', emp);
+  }  
 }

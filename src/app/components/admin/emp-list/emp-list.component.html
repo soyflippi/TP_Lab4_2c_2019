@@ -2,11 +2,10 @@
   <h1 class="mb-3" style="color:black; text-align:center;">Empleados</h1>
   <button class="btn btn-md" (click)="reload()"><i class="fas fa-sync-alt"></i></button>
 
-  <button class="btn btn-success mb-2" type="button" data-toggle="modal" data-target="#exampleModalCenter">Crear
-    nuevo empleado</button>
+  <button class="btn btn-success btn-sm mb-2" type="button" data-toggle="modal" data-target="#exampleModalCenter">Crear empleado</button>
 
   <button class="btn btn-success btn-sm pull-right" (click)="exportAsXLSX()">Excel</button> 
-  <button class="btn btn-success btn-sm pull-right" (click)="exportAsPDF()">PDF</button>
+  <button class="btn btn-secondary btn-sm pull-right" (click)="exportAsPDF()">PDF</button>
 
   <table id="tablaEmpleados" class="table table-responsive-sm tableBackground">
     <thead>

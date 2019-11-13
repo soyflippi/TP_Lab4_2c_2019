@@ -51,6 +51,7 @@ import { EstadoMesaPipe } from './pipes/estado-mesa.pipe';
 import { PrecioProductoPipe } from './pipes/precio-producto.pipe';
 import { DemoraPedidoPipe } from './pipes/demora-pedido.pipe';
 import { ComentariosComponent } from './components/admin/comentarios/comentarios.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ComentariosComponent } from './components/admin/comentarios/comentarios
     PrecioProductoPipe,
     DemoraPedidoPipe,
     ComentariosComponent,
-    MenuComponent
+    MenuComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
