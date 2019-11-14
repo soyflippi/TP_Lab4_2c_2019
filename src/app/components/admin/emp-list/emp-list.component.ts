@@ -107,7 +107,6 @@ export class EmpListComponent implements OnInit {
     this.adminServ.AltaEmpleados(this.nuevoUsuario).then(data => {
       if (data) {
         this.reload();
-        this.openSnackBar('Empleado guardado correctamente', 'OK');
       }
     })
       .catch(error => { console.log(error); });
@@ -115,18 +114,11 @@ export class EmpListComponent implements OnInit {
 
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 4000,
-    });
-  }
-
   Suspender(codigoemp: number) {
     let user = { cod_emp: codigoemp };
     this.adminServ.SuspenderEmp(user);
     this.dataSource.data = [];
     this.reload();
-    this.openSnackBar('Empleado suspendido. Recargue lista.', 'OK');
   }
 
   Reincorporar(codigoemp: number) {
@@ -134,7 +126,6 @@ export class EmpListComponent implements OnInit {
     this.adminServ.ReincorporarEmp(user);
     this.dataSource.data = [];
     this.reload();
-    this.openSnackBar('Empleado reincoporado. Recargue lista.', 'OK');
   }
 
   Eliminar(codigoemp: number) {
@@ -142,7 +133,6 @@ export class EmpListComponent implements OnInit {
     this.adminServ.BajaLogica(user);
     this.dataSource.data = [];
     this.reload();
-    this.openSnackBar('Empleado eliminado. Recargue lista.', 'OK');
   }
 
   get name() {

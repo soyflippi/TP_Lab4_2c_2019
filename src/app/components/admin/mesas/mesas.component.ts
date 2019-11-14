@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { AuthService } from 'src/app/services/auth.service';
 import { PedidosService } from 'src/app/services/pedidos.service';
 
@@ -20,63 +20,51 @@ export class MesasComponent implements OnInit {
 
   ngOnInit() {
     this.adminServ.mesaslive()
-    .then( data => {
-      this.mesasLive = data;
-    });
+      .then(data => {
+        this.mesasLive = data;
+      });
 
     this.rol = this.auth.getRol();
   }
 
-  cambiarCom(estadoMesa: number, nromesa: number)
-  {
-    let cualmesa = {nro_mesa: nromesa, estado: estadoMesa + 1 };
+  cambiarCom(estadoMesa: number, nromesa: number) {
+    let cualmesa = { nro_mesa: nromesa, estado: estadoMesa + 1 };
     this.adminServ.cambiarComiendo(cualmesa);
-    this.openSnackBar('Se cambio el estado a Comiendo. Recargue la lista', 'OK');
+    this.reload();
   }
 
-  cambiarPag(estadoMesa: number,nromesa: number)
-  {
-    let cualmesa = {nro_mesa: nromesa, estado: estadoMesa + 1 };
+  cambiarPag(estadoMesa: number, nromesa: number) {
+    let cualmesa = { nro_mesa: nromesa, estado: estadoMesa + 1 };
     this.adminServ.cambiarPagando(cualmesa);
-    this.openSnackBar('Se cambio el estado a Pagando. Recargue la lista', 'OK');
+    this.reload();
   }
 
-  cambiarClose(estadoMesa: number,nromesa: number)
-  {
-    let cualmesa = {nro_mesa: nromesa, estado: estadoMesa + 1 };
+  cambiarClose(estadoMesa: number, nromesa: number) {
+    let cualmesa = { nro_mesa: nromesa, estado: estadoMesa + 1 };
     this.adminServ.cambiarCerrada(cualmesa);
-    this.openSnackBar('Se ha cerrado la mesa. Recargue la lista', 'OK');
+    this.reload();
   }
 
-  reload()
-  {
+  reload() {
     this.adminServ.mesaslive()
-    .then( data => {
-      this.mesasLive = data;
-    });
+      .then(data => {
+        this.mesasLive = data;
+      });
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
-  traerDatosPCuenta(mesa: number, estado: number)
-  {
+  traerDatosPCuenta(mesa: number, estado: number) {
     this.mesa = mesa;
     this.estado = estado;
     this.pedidos.pedidosParaCuenta(mesa)
-    .then( data => {this.pedidosPcuenta = data; console.log(data); })
-    .catch( error => { console.log(error); });
+      .then(data => { this.pedidosPcuenta = data; console.log(data); })
+      .catch(error => { console.log(error); });
   }
 
-  cerrarMesaParaStats(ide: string)
-  {
-    let aidi = {id: ide};
+  cerrarMesaParaStats(ide: string) {
+    let aidi = { id: ide };
     this.pedidos.removerPedidoLive(aidi)
-    .then( data => {console.log(data); })
-    .catch( error => console.log(error));
+      .then(data => { console.log(data); })
+      .catch(error => console.log(error));
 
     let mesaCerrada = {
       mesa: this.pedidosPcuenta[0].nro_mesa,
@@ -84,8 +72,8 @@ export class MesasComponent implements OnInit {
       total: this.pedidosPcuenta[0].total
     };
     this.pedidos.nuevaMesaCerrada(mesaCerrada)
-    .then( data => {console.log(data); })
-    .catch( error => {console.log(error); });
+      .then(data => { console.log(data); })
+      .catch(error => { console.log(error); });
 
     this.cambiarClose(this.estado, this.mesa);
   }
