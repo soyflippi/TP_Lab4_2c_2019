@@ -13,7 +13,8 @@ export class BuscarpedidoComponent implements OnInit {
   pedidos: any = [];
   cod_pedido: string;
   mostrarPedido: boolean;
-
+  showError: boolean;
+  showFeedback = false;
   cod: number;
   estado: number;
   cantidad: number;
@@ -25,25 +26,21 @@ export class BuscarpedidoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFeedback = false;
+    this.showError = false;
     this.mostrarPedido = false;
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 4000,
-    });
   }
 
   buscarPedido()
   {
+    this.showError = false;
     this.pedidosServ.traerPedidoXid(this.cod_pedido)
     .then( data => {
       console.log(data);
       if (data.length === 0){
-        this.openSnackBar('No se encontraron pedidos con ese codigo.', 'OK');
+        this.showError = true;
       }
       else{
-        console.log(data);
         this.pedidos = data;
         this.mostrarPedido = true;
         this.nuevaEncuestaPendiente();
@@ -61,13 +58,14 @@ export class BuscarpedidoComponent implements OnInit {
 
   CancelarPedio()
   {
+    this.showFeedback = false;
     let pedido = {
       idPedido: this.idPedido,
       cod_plato: this.cod
     };
     this.pedidosServ.cancelarPedido(pedido)
     .then( data => {
-      this.openSnackBar('Su pedido ha sido cancelado.', 'OK');
+      this.showFeedback = true;
       this.mostrarPedido = false;
       this.buscarPedido();
     })

@@ -38,6 +38,8 @@ import { AuthGuardService } from "./guards/auth-guard.service";
 import { UsuariosService } from './services/usuarios.service';
 import { HttpserviceService } from './services/httpservice.service';
 import { AuthService } from './services/auth.service';
+import { CargandoService } from './services/cargando.service';
+
 // Directivas
 import { ConfirmPasswordDirective } from './directives/confirm-password.directive';
 import { JWTInterceptor } from './services/Interceptors/jwtinterceptor';
@@ -52,6 +54,8 @@ import { PrecioProductoPipe } from './pipes/precio-producto.pipe';
 import { DemoraPedidoPipe } from './pipes/demora-pedido.pipe';
 import { ComentariosComponent } from './components/admin/comentarios/comentarios.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { CargandoComponent } from './components/cargando/cargando.component';
+import { CargandoInterceptor } from './services/Interceptors/cargando.interceptor';
 
 @NgModule({
   declarations: [
@@ -86,7 +90,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     DemoraPedidoPipe,
     ComentariosComponent,
     MenuComponent,
-    PerfilComponent
+    PerfilComponent,
+    CargandoComponent
   ],
   imports: [
     BrowserModule,
@@ -100,11 +105,13 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     NgbModule
   ],
   exports: [StyleModule],
-  providers: [HttpserviceService, UsuariosService, AuthService, AuthGuardService, {
+  providers: [HttpserviceService, UsuariosService, AuthService, AuthGuardService, CargandoService, {
     provide: HTTP_INTERCEPTORS,
     useClass: JWTInterceptor,
     multi: true
-  }, { provide: 'Window', useValue: window }],
+  },
+    { provide: HTTP_INTERCEPTORS, useClass: CargandoInterceptor, multi: true },
+    { provide: 'Window', useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
